@@ -1,0 +1,24 @@
+h1{
+    color: cornflowerblue;
+    text-align: center;
+}
+.navbar-logo {
+    height: 100px;
+    width: auto;
+  }
+
+  .card{
+    width: 33.33%
+  }
+
+  /* input:invalid {
+    border: 2px solid rgb(242, 57, 21);
+    background-color: #f38b41;
+  }
+
+  input:valid {
+    border: 2px solid green;
+    background-color: #d1f7c4;
+  } */
+
+

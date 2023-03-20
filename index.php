@@ -1,47 +1,38 @@
-<?php
-require_once('database.php');
-
-$queryProducts = 'SELECT * FROM products';
-$statement = $db->prepare($queryProducts);
-$statement->execute();
-$products = $statement->fetchAll();
-$statement->closeCursor();
-?>
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Furniture Website</title>
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+	<title>Home</title>
+	<link rel="stylesheet" href="main.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script><!-- define some style elements-->
+	  
 </head>
 
-<body>
-    <h1>Furniture Shop</h1>
-    <table>
-        <tr>
-            <th>Product ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Material</th>
-            <th>Firmness</th>
-            <th>Manufacture Date</th>
-            <th>Price</th>
-</tr>
-<?php foreach ($products as $product) : ?>
-            <tr>
-                <td><?php echo $product['prod_id']; ?></td>
-                <td><?php echo $product['prod_name']; ?></td>
-                <td><?php echo $product['prod_type']; ?></td>
-                <td><?php echo $product['material']; ?></td>
-                <td><?php echo $product['firmnness']; ?></td>           
-                <td><?php echo $product['manufactured']; ?></td>
-                <td><?php echo $product['prod_price']; ?></td>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.php">
+      <img class="navbar-logo" src="logo.png">
+    </a>
+  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" data-bs-theme="dark">
+      <div class="navbar-nav">
 
-                <td><form action="delete_product.php" method="post">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['prod_id']; ?>">
-                </form></td>
-            </tr>
-            <?php endforeach; ?>
-</table>
+        <a class="nav-link" href="index.php">Home</a>
+        <a class="nav-link" href="stock.php">Stock</a>
+        <a class="nav-link" href="contact-form.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<body>
+    <p class="home-text">At TRibe Craft we honour traditional woodworking and blend it with modernity to create beautiful pieces for you. </p>
+        
 </body>
-</html>
+
+    </html>
