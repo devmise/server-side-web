@@ -32,7 +32,51 @@
 
 <body>
     <p class="home-text">At TRibe Craft we honour traditional woodworking and blend it with modernity to create beautiful pieces for you. </p>
-        
+    
+    <div id="carousel" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="zinc.webp" class="d-block mx-auto w-50" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="strawberry.webp" class="d-block mx-auto w-50" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="lucie.webp" class="d-block mx-auto w-50" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" ></span>
+  
+  </button>
+</div>
+
+
+<div class="row justify-content-center">
+  <div class="col">
+    <img src="1.png" class="img-fluid">
+  </div>
+  <div class="col">
+    <img src="2.png" class="img-fluid">
+  </div>
+  <div class="col">
+    <img src="3.png" class="img-fluid">
+  </div>
+  <div class="col">
+    <img src="4.png" class="img-fluid">
+  </div>
+</div>
+
+
 </body>
 
     </html>

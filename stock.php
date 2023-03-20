@@ -1,11 +1,24 @@
 <?php
 require_once('database.php');
 
-$queryProducts = 'SELECT * FROM products';
-$statement = $db->prepare($queryProducts);
-$statement->execute();
-$products = $statement->fetchAll();
-$statement->closeCursor();
+$productQuery = $db->query('SELECT * FROM products');
+$results = array();
+while($row = $productQuery->fetch(PDO::FETCH_ASSOC)){
+  $results[] = array_values($row);
+}
+
+if (!isset($_GET['sort'])) {
+  $productQuery = $db->query('SELECT * FROM products');
+} else {
+  $sort = $_GET['sort'];
+  if ($sort === 'price_asc') {
+      $productQuery = $db->query('SELECT * FROM products ORDER BY prod_price ASC');
+  } elseif ($sort === 'price_desc') {
+      $productQuery = $db->query('SELECT * FROM products ORDER BY prod_price DESC');
+  }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +29,7 @@ $statement->closeCursor();
 	<link rel="stylesheet" href="main.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script><!-- define some style elements-->
 	
-        <title>Tribe Craft</title>
+        <title>TRibe Craft</title>
 </head>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,11 +54,20 @@ $statement->closeCursor();
 <body>
 <div class="container">
     <h1>Our Stock</h1>
+    <form method = "get">
+      <label for = "sort">Sort by:</label>
+      <select name ="sort" id="sort">
+        <option value ="price_asc">Price (low to high)</option>
+        <option value ="price_desc">Price (high to low)</option>
+</select>
+<button type="submit">Sort</button>
+
+</form>
     <div class="row">
   
-<?php foreach ($products as $product) : ?>
+<?php foreach ($productQuery as $product) : ?>
   <div class="col">
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 15rem;">
 <img src = " <?php echo $product['image'];?> "class="card-img-top">
 
       <div class="card-body"> 
@@ -53,11 +75,22 @@ $statement->closeCursor();
         <p class="card-text"></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Material: <?php echo $product['material']; ?> </li>
-        <li class="list-group-item">Firmness: <?php echo $product['firmnness']; ?></li>
-        <li class="list-group-item">Warranty: <?php echo $product['warranty'];?> years</li>
-        <li class="list-group-item">Price: €<?php echo $product['prod_price']; ?></li>
-      </ul>
+            <?php foreach ($product as $key => $value) : ?>
+              <?php if ($key == 'prod_price') : ?>
+    <p class="card-text">Price: €<?php echo $value; ?></p>
+  <?php endif; ?>
+  <?php if ($key == 'firmnness') : ?>
+    <p class="card-text">Firmness: <?php echo $value; ?></p>
+  <?php endif; ?>
+  <?php if ($key == 'material') : ?>
+    <p class="card-text">Material: <?php echo $value; ?></p>
+  <?php endif; ?>
+  <?php if ($key == 'warranty') : ?>
+    <p class="card-text">Warranty: <?php echo $value;?> years</p>
+  <?php endif; ?>
+<?php endforeach; ?>
+          </ul>
+  
     </div>
     </div>
 
